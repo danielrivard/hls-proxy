@@ -1,5 +1,7 @@
-gunicorn
-requests
-flask
-pybase64
-gevent
+gunicorn==22.0.0
+requests==2.31.0
+Flask==3.0.3
+gevent==24.2.1
+Flask-Caching==2.2.0
+Flask-Compress==1.15
+falcon==3.1.3
