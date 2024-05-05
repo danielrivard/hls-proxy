@@ -1,3 +1,8 @@
+# Fork from https://github.com/mightymercado/hls-proxy
+
+This is now quite different from the original code. But it should retain the same functionality.
+I did not retest the performance, but it is still quite fast to answer.
+
 # Fast HLS Proxy
 
 This is a fast and lightweight HTTP/S server that redirects and rewrites encrypted HLS streams to avoid CORS and Geoblocking.
@@ -16,6 +21,3 @@ This is a fast and lightweight HTTP/S server that redirects and rewrites encrypt
 5. Uses persistent connections with urllib `PoolManager`
 6. Uses chunked response stream
 7. Proxies raw GZIP upstream data without decoding
-
-## Todo
-1. Write todo

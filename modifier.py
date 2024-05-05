@@ -50,7 +50,6 @@ class M3U8Proxy:
 
         if tag.name in M3U8Parser.KEY_TAGS:
             uri = urlsafe_b64encode(uri) + b'.key'
-            # prefix = prefix.replace(Constant.HLS_ENDPOINT, Constant.KEY_ENDPOINT)
 
         return line.replace(tag.attributes['URI'], b'/' + uri)
 
@@ -70,9 +69,10 @@ class M3U8Proxy:
                 if not line.startswith(b'http'):
                     line = urljoin(base_path, line)
 
-                path = urlparse(line).path
-                _, ext = os.path.splitext(path)
-                # Ignore the dot
+                file = urlparse(line).path
+                _, ext = os.path.splitext(file)
+                # Not all segments are .ts, but the handler is the same.
+                # So if not in supported extensions give this extension as default
                 if ext[1:] not in Extensions.get_all():
                     ext = b'.ts'
                 yield b'/%b%b\n' % (urlsafe_b64encode(line), ext)

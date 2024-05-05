@@ -1,5 +1,6 @@
 import logging
 from base64 import urlsafe_b64decode
+from typing import Iterable
 
 import falcon
 from gevent import pywsgi
@@ -15,11 +16,14 @@ class HlsProxyApi:
         url = urlsafe_b64decode(path + '====')
 
         response = hls_proxy(url, extension)
-        t = type(response.body)
-        if isinstance(response.body, (str, bytes, bytearray)):
+
+        if isinstance(response.body, Iterable):
+            res.stream = response.body
+        elif isinstance(response.body, bytes):
             res.data = response.body
         else:
-            res.stream = response.body
+            res.text = response.body
+
         res.status = response.status
         res.content_type = response.content_type
         {res.append_header(k, v) for k, v in response.headers.items()}

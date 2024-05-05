@@ -22,10 +22,10 @@ app.config['COMPRESS_MIMETYPES'].append('application/x-mpegURL')
 
 
 # Optional key endpoint for caching
-@app.route('/<string:path>.key')
-@cache.cached(timeout=timedelta(hours=3).seconds)
-def key(path: str):
-    return hls(path, 'key')
+# @app.route('/<string:path>.key')
+# @cache.cached(timeout=timedelta(hours=3).seconds)
+# def key(path: str):
+#     return hls(path, 'key')
 
 
 @app.route('/<string:path>.<string:extension>')
